@@ -12,27 +12,8 @@ namespace SNRecieverWebHook
 {
     public static class Function1
     {
-        //[FunctionName("Function1")]
-        //public static async Task<IActionResult> Run(
-        //    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
-        //    ILogger log)
-        //{
-        //    log.LogInformation("C# HTTP trigger function processed a request.");
-
-        //    string name = req.Query["name"];
-
-        //    string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-        //    dynamic data = JsonConvert.DeserializeObject(requestBody);
-        //    name = name ?? data?.name;
-
-        //    string responseMessage = string.IsNullOrEmpty(name)
-        //        ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-        //        : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-        //    return new OkObjectResult(responseMessage);
-        //}
-
-        [FunctionName("Function1")]
+        
+        [FunctionName("SN-ServiceBus-WebHook")]
         public static void Run(
     [ServiceBusTrigger("queue1", Connection = "connection")]
     string myQueueItem,
@@ -41,10 +22,16 @@ namespace SNRecieverWebHook
     string messageId,
     ILogger log)
         {
-            log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
-            log.LogInformation($"EnqueuedTimeUtc={enqueuedTimeUtc}");
-            log.LogInformation($"DeliveryCount={deliveryCount}");
-            log.LogInformation($"MessageId={messageId}");
+            // myQueueItem is the message recieved from ServiceBus
+  HttpClient client = new HttpClient();
+  var json = JsonConvert.SerializeObject(myQueueItem, Formatting.Indented);
+  var stringContent = new StringContent(json);
+  client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+         
+//Send it to your servicenow URL.
+//  var response =  client.PostAsync("https://localhost:7002/ToServiceNow", stringContent);
+
+ 
         }
     }
 }

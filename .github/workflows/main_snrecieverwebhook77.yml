@@ -39,4 +39,4 @@ jobs:
           app-name: 'SNRecieverWebHook77'
           slot-name: 'Production'
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C572E9002F7642A1BC9B5FC97236F52F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D798462080194D3C8EAC2424FCDD1FEE }}

@@ -1,0 +1,8 @@
+{
+    "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "connection": "Endpoint=sb://d2mtopics.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=5uJ1wzO4ZpjyCKHp9P1PHM9cLhYjE+Fc7+ASbOMMa/A="
+  }
+}

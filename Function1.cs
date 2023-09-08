@@ -16,7 +16,7 @@ namespace SNRecieverWebHook
 {
     public static class Function1
     {
-        
+
         [FunctionName("SN-ServiceBus-WebHook")]
         public static void Run(
     [ServiceBusTrigger("queue1", Connection = "connection")]
@@ -27,15 +27,13 @@ namespace SNRecieverWebHook
     ILogger log)
         {
             // myQueueItem is the message recieved from ServiceBus
-  HttpClient client = new HttpClient();
-  var json = JsonConvert.SerializeObject(myQueueItem, Formatting.Indented);
-  var stringContent = new StringContent(json);
-  client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-         
-//Send it to your servicenow URL.
-//  var response =  client.PostAsync("https://localhost:7002/ToServiceNow", stringContent);
+            HttpClient client = new HttpClient();
+            var json = JsonConvert.SerializeObject(myQueueItem, Formatting.Indented);
+            var stringContent = new StringContent(json);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
- 
+            //Send it to your servicenow URL.
+            var response = client.PostAsync("https://servicenowdev.nttmsc.my/api/ntt12/kafkaevents", stringContent);
         }
     }
 }

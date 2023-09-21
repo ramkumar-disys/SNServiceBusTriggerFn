@@ -45,7 +45,7 @@ jobs:
       with:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'init'
-        tf_actions_working_dir: "./terraform-files"
+        tf_actions_working_dir: "./terraform/environment/dev"
         backend-config: resource_group_name = "NttRG" \
                         storage_account_name = "servicebusstracc1" \
                         container_name       = "servicebuscontainer" \
@@ -62,14 +62,14 @@ jobs:
       with:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'validate'
-        tf_actions_working_dir: "./terraform-files"
+        tf_actions_working_dir: "./terraform/environment/dev"
          
     - name: 'Terraform Plan'
       uses: hashicorp/terraform-github-actions@master
       with:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'plan'
-        tf_actions_working_dir: "./terraform-files"
+        tf_actions_working_dir: "./terraform/environment/dev"
         backend-config: resource_group_name =${{ secrets.AZURE_RESOURCE_GROUP }} \
                         storage_account_name =${{ secrets.AZURE_STORAGE_ACCOUNT }} \
                         container_name       =${{ secrets.AZURE_CONTAINER_NAME }} \
@@ -81,7 +81,7 @@ jobs:
       with:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'apply'
-        tf_actions_working_dir: "./terraform-files"
+        tf_actions_working_dir: "./terraform/environment/dev"
         backend-config: resource_group_name =${{ secrets.AZURE_RESOURCE_GROUP }} \
                         storage_account_name =${{ secrets.AZURE_STORAGE_ACCOUNT }} \
                         container_name       =${{ secrets.AZURE_CONTAINER_NAME }} \
@@ -93,7 +93,7 @@ jobs:
     #   with:
     #     tf_actions_version: 0.14.8
     #     tf_actions_subcommand: 'destroy'
-    #     tf_actions_working_dir: "./terraform-files"
+    #     tf_actions_working_dir: "./terraform/environment/dev"
     #     backend-config: resource_group_name =${{ secrets.AZURE_RESOURCE_GROUP }} \
     #                     storage_account_name =${{ secrets.AZURE_STORAGE_ACCOUNT }} \
     #                     container_name       =${{ secrets.AZURE_CONTAINER_NAME }} \

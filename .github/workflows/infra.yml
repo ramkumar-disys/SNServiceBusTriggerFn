@@ -70,10 +70,14 @@ jobs:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'plan'
         tf_actions_working_dir: "./terraform/environment/dev"
-        backend-config: resource_group_name =${{ secrets.AZURE_RESOURCE_GROUP }} \
-                        storage_account_name =${{ secrets.AZURE_STORAGE_ACCOUNT }} \
-                        container_name       =${{ secrets.AZURE_CONTAINER_NAME }} \
-                        key                  =${{ secrets.AZURE_KEY }}
+        backend-config: resource_group_name = "NttRG" \
+                        storage_account_name = "servicebusstracc1" \
+                        container_name       = "servicebuscontainer" \
+                        key                  = "terraform.tfstate"
+        # backend-config: resource_group_name =${{ secrets.AZURE_RESOURCE_GROUP }} \
+        #                 storage_account_name =${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+        #                 container_name       =${{ secrets.AZURE_CONTAINER_NAME }} \
+        #                 key                  =${{ secrets.AZURE_KEY }}
     
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main'
@@ -82,10 +86,14 @@ jobs:
         tf_actions_version: 0.14.8
         tf_actions_subcommand: 'apply'
         tf_actions_working_dir: "./terraform/environment/dev"
-        backend-config: resource_group_name =${{ secrets.AZURE_RESOURCE_GROUP }} \
-                        storage_account_name =${{ secrets.AZURE_STORAGE_ACCOUNT }} \
-                        container_name       =${{ secrets.AZURE_CONTAINER_NAME }} \
-                        key                  =${{ secrets.AZURE_KEY }}
+        backend-config: resource_group_name = "NttRG" \
+                        storage_account_name = "servicebusstracc1" \
+                        container_name       = "servicebuscontainer" \
+                        key                  = "terraform.tfstate"
+        # backend-config: resource_group_name =${{ secrets.AZURE_RESOURCE_GROUP }} \
+        #                 storage_account_name =${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+        #                 container_name       =${{ secrets.AZURE_CONTAINER_NAME }} \
+        #                 key                  =${{ secrets.AZURE_KEY }}
     
     # - name: Terraform Destroy
     #   if: github.ref == 'refs/heads/main'
@@ -94,6 +102,10 @@ jobs:
     #     tf_actions_version: 0.14.8
     #     tf_actions_subcommand: 'destroy'
     #     tf_actions_working_dir: "./terraform/environment/dev"
+    #     backend-config: resource_group_name = "NttRG" \
+    #                     storage_account_name = "servicebusstracc1" \
+    #                     container_name       = "servicebuscontainer" \
+    #                     key                  = "terraform.tfstate"
     #     backend-config: resource_group_name =${{ secrets.AZURE_RESOURCE_GROUP }} \
     #                     storage_account_name =${{ secrets.AZURE_STORAGE_ACCOUNT }} \
     #                     container_name       =${{ secrets.AZURE_CONTAINER_NAME }} \
